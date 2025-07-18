@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Playalong</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: sans-serif;
+            background: #f5f5f5;
+        }
+
+            :root {
+          --vh: 100%;
+        } 
+
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; 
+            height: calc(var(--vh, 1vh) * 100);
+
+        }
+
+
+    #instrument {
+    aspect-ratio: 16 / 9; /* You can change this to whatever ratio you want */
+    width: 90vw;           /* Or max out as needed */
+    max-width: 1000px;     /* Optional: limit how big it can grow */
+    /*background: #ddd;      /* Temporary background so you can see it */
+    /* border: 2px solid #aaa; */
+    /* border-radius: 12px; */
+}
+
+#tamborine {
+    display: none;
+    width: 100%;
+    height: 100%;
+    /* background-color: blue; */
+    position: relative; /* Needed for absolute children */
+    transition: transform 0.4s ease;
+    transform: rotate(-15deg);
+
+}
+
+#tamborine-main {
+    top: -15%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(249, 223, 117);
+    clip-path: ellipse(46% 17% at 50% 50%);
+}
+
+#tamborine-bottom {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(84, 84, 30);
+    clip-path: ellipse(46% 17% at 50% 50%);
+}
+
+#tamborine-middle {
+    top: 36%;
+    position: absolute;
+    width: 92%;
+    height: 33%;
+    background-color: rgb(84, 84, 30);
+    left: 4%;
+}
+
+#bell {
+    display: none;
+    width: 100%;
+    height: 100%;
+    /* background-color: blue; */
+    position: relative; /* Needed for absolute children */
+    transform: rotate(0deg);
+    transition: transform 0.2s ease;
+
+}
+
+#bell-top {
+    position: absolute;
+    width: 23%;
+    aspect-ratio: 1/1;
+    left: 37.3%;
+    top: -10%;
+    background-color: rgb(141, 116, 13);
+    clip-path: ellipse(22% 39% at 50% 50%);
+}
+
+#bell-main {
+    top: -15%;
+    position: absolute;
+    aspect-ratio: 1/1;
+    width: 75%;
+    left: 15%;
+    background-color: rgb(141, 116, 13);
+    clip-path: polygon(23% 33%, 17% 79%, 76% 79%, 68% 32%, 66% 25%, 63% 19%, 60% 17%, 56% 15%, 52% 14%, 48% 14%, 43% 14%, 39% 14%, 35% 15%, 31% 17%, 28% 19%, 26% 22%, 24% 26%);
+}
+
+#bell-bottom {
+    top: 75.9%;
+    left: 25.9%;
+    position: absolute;
+    width: 48%;
+    height: 30%;
+    background-color: rgb(155, 126, 14);
+    clip-path: ellipse(46% 17% at 50% 50%);
+}
+
+#bell-bottom-inside {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    left: 4.3%;
+    top: 2%;
+    background-color: rgb(64, 51, 0);
+    clip-path: ellipse(46% 17% at 50% 50%);
+}
+
+#bell-bottom-dinger {
+    position: relative;
+    width: 13%;
+    height: 53%;
+    left: 42%;
+    top: 0%;
+    background-color: rgb(192, 156, 0);
+    transition: left 0.1s ease;
+    clip-path: polygon(20% 0%, 80% 0, 81% 80%, 67% 100%, 35% 100%, 20% 80%);
+}
+
+
+
+#castenet {
+    display: none;
+    width: 100%;
+    height: 100%;
+    left: 0%;
+    position: relative; /* Needed for absolute children */
+    transform: rotate(0deg);
+}
+
+#castenet-main {
+    position: absolute;
+    height: 120%;
+    left: 10%;
+    aspect-ratio: 1/1;
+    background-color: rgba(165, 95, 3, 0.783);
+    clip-path: polygon(28% 5%, 68% 5%, 63% 20%, 71% 26%, 75% 31%, 78% 36%, 79% 43%, 80% 50%, 79% 56%, 77% 61%, 73% 65%, 69% 68%, 65% 70%, 59% 72%, 53% 73%, 45% 73%, 37% 72%, 33% 71%, 28% 69%, 23% 66%, 18% 60%, 15% 54%, 14% 46%, 16% 38%, 18% 32%, 23% 26%, 29% 23%, 33% 20%);
+    transform: rotate(15deg);
+}
+
+#castenet-main-inside {
+    position: absolute;
+    height: 95%;
+    left: 6%;
+    top: 0%;
+    aspect-ratio: 1/1.2;
+    background-color: rgba(255, 150, 70, 0.868);
+    clip-path: polygon(28% 5%, 68% 5%, 63% 20%, 71% 26%, 75% 31%, 78% 36%, 79% 43%, 80% 50%, 79% 56%, 77% 61%, 73% 65%, 69% 68%, 65% 70%, 59% 72%, 53% 73%, 45% 73%, 37% 72%, 33% 71%, 28% 69%, 23% 66%, 18% 60%, 15% 54%, 14% 46%, 16% 38%, 18% 32%, 23% 26%, 29% 23%, 33% 20%);
+}
+
+
+#castenet-bottom {
+    position: absolute;
+    height: 120%;
+    left: 20%;
+    top: 1%;
+    aspect-ratio: 1/1;
+    background-color: rgb(70, 19, 10);
+    clip-path: polygon(28% 5%, 68% 5%, 63% 20%, 71% 26%, 75% 31%, 78% 36%, 79% 43%, 80% 50%, 79% 56%, 77% 61%, 73% 65%, 69% 68%, 65% 70%, 59% 72%, 53% 73%, 45% 73%, 37% 72%, 33% 71%, 28% 69%, 23% 66%, 18% 60%, 15% 54%, 14% 46%, 16% 38%, 18% 32%, 23% 26%, 29% 23%, 33% 20%);
+    transition: left 0.2s ease, transform 0.2s ease;
+    transform: rotate(-1deg);
+}
+
+#castenet-bottom-inside {
+    position: absolute;
+    height: 95%;
+    left: 2.5%;
+    top: 0.3%;
+    aspect-ratio: 1/1;
+    background-color: rgb(170, 46, 24);
+    clip-path: polygon(28% 5%, 68% 5%, 63% 20%, 71% 26%, 75% 31%, 78% 36%, 79% 43%, 80% 50%, 79% 56%, 77% 61%, 73% 65%, 69% 68%, 65% 70%, 59% 72%, 53% 73%, 45% 73%, 37% 72%, 33% 71%, 28% 69%, 23% 66%, 18% 60%, 15% 54%, 14% 46%, 16% 38%, 18% 32%, 23% 26%, 29% 23%, 33% 20%);
+}
+
+#castenet-string {
+    position: relative;
+    clip-path: ellipse(25% 5% at 50% 50%);
+    height: 25%;
+    width: 45%;
+    top: 8%;
+    left: 25%;
+    background-color: rgb(53, 18, 6);
+
+}
+
+
+#tabor {
+    display: none;
+    width: 100%;
+    height: 100%;
+    left: 0%;
+    /* background-color: blue; */
+    position: relative; /* Needed for absolute children */
+    transition: left 0.4s ease;
+    transform: rotate(70deg);
+
+
+}
+
+#tabor-main {
+    top: -15%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(250, 231, 156);
+    clip-path: ellipse(38% 22% at 50% 50%);
+}
+
+#tabor-bottom {
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(145, 108, 59);
+    clip-path: ellipse(38% 22% at 50% 50%);
+}
+
+#tabor-middle {
+    top: 36%;
+    position: absolute;
+    width: 76%;
+    height: 40%;
+    background-color: rgb(145, 108, 59);
+    left: 12%;
+    overflow: hidden;
+}
+
+.tabor-triangle {
+    position: absolute;
+    clip-path: polygon(6% 42%, 21% 16%, 31% 45%, 48% 21%, 66% 45%, 76% 14%, 89% 49%, 84% 59%, 76% 65%, 69% 68%, 63% 72%, 56% 73%, 47% 74%, 39% 73%, 30% 71%, 20% 67%, 14% 63%, 9% 57%, 4% 49%);
+    background-color: rgb(91, 46, 5);
+    width: 88%;
+    height: 76%;
+    top: 41%;
+    left: 9%;
+    transform: rotate(0deg)
+}
+
+.tabor-triangle-inside {
+    position: absolute;
+clip-path: polygon(6% 42%, 21% 16%, 29% 59%, 48% 21%, 68% 58%, 76% 14%, 89% 49%, 84% 59%, 76% 65%, 69% 68%, 63% 72%, 56% 73%, 47% 74%, 39% 73%, 30% 71%, 20% 67%, 14% 63%, 9% 57%, 4% 49%);
+    background-color: rgb(145, 108, 59);
+    width: 95%;
+    height: 95%;
+    left: 2%;
+    top: 10%;
+    transform: rotate(0deg)
+}
+
+
+
+.tamborine-side {
+    position: absolute;
+    clip-path: ellipse(32% 8% at 50% 50%);
+    top: 43%;
+    width: 18%;
+    height: 20%;
+    background-color: rgb(255, 166, 0);
+}
+
+.tamborine-side1 {
+    position: absolute;
+    clip-path: ellipse(32% 8% at 50% 50%);
+    top: 56%;
+    width: 18%;
+    height: 20%;
+    background-color: rgb(255, 166, 0);
+}
+
+.tamborine-mini {
+    position: relative; /* Add this */
+    clip-path: ellipse(32% 8% at 50% 50%);
+    width: 95%;
+    height: 95%;
+    left: 1%;
+    top: -2%;
+    background-color: rgb(255, 219, 40);
+}
+
+#tam1 {
+    transform: rotate(15deg);
+    left: 2%
+}
+
+#tam11 {
+    transform: rotate(15deg);
+    left: 2%;
+}
+
+#tam2 {
+    transform: rotate(4deg);
+    left: 19%;
+    top: 50%
+
+}
+
+#tam21 {
+    transform: rotate(4deg);
+    left: 19%;
+    top: 63%
+
+}
+
+#tam3 {
+    left: 40%;
+    top: 52.5%
+}
+
+#tam31 {
+    left: 40%;
+    top: 65.5%
+
+}
+
+#tam4 {
+    transform: rotate(-4deg);
+    right: 19%;
+    top: 50%
+
+}
+
+#tam41 {
+    transform: rotate(-4deg);
+    right: 19%;
+    top: 63%
+
+}
+
+#tam5 {
+    transform: rotate(-15deg);
+    right: 2%
+}
+
+#tam51 {
+    transform: rotate(-15deg);
+    right: 2%
+}
+   
+
+   
+   
+     
+    </style>
+</head>
+<body>
+    <div class="center-container">
+      <div id="instrument">
+        <div id="tamborine">
+            <div id=tamborine-bottom></div>
+            <div id="tamborine-middle">
+            </div>
+            <div id="tamborine-main"></div>
+                <div class= "tamborine-side" id="tam1">
+                    <div class="tamborine-mini"></div>
+                </div>
+                <div class= "tamborine-side" id="tam2">
+                    <div class="tamborine-mini"></div>
+                </div>
+                <div class= "tamborine-side" id="tam3">
+                    <div class="tamborine-mini"></div>
+                </div>
+                <div class= "tamborine-side" id="tam4">
+                    <div class="tamborine-mini"></div>
+                </div>
+                <div class= "tamborine-side" id="tam5">
+                    <div class="tamborine-mini"></div>
+                </div>
+                <div class= "tamborine-side1" id="tam11"><div class="tamborine-mini"></div></div>
+                <div class= "tamborine-side1" id="tam21"><div class="tamborine-mini"></div></div>
+                <div class= "tamborine-side1" id="tam31"><div class="tamborine-mini"></div></div>
+                <div class= "tamborine-side1" id="tam41"><div class="tamborine-mini"></div></div>
+                <div class= "tamborine-side1" id="tam51"><div class="tamborine-mini"></div></div>
+        </div>
+        <div id="tabor">
+            <div id=tabor-bottom></div>
+            <div id="tabor-middle">
+            </div>
+            <div id="tabor-main"></div>
+            <div class="tabor-triangle">
+                <div class="tabor-triangle-inside"></div>
+            </div>
+
+        </div>
+        <div id="castenet">
+            <div id="castenet-main">
+                <div id="castenet-main-inside"></div>
+            </div>
+            <div id="castenet-bottom">
+                <div id="castenet-bottom-inside">
+                    <div id="castenet-string"></div>
+                </div>
+            </div>
+        </div>
+        <div id="bell">
+            <div id="bell-top"></div>
+            <div id="bell-main"></div>
+            <div id="bell-bottom">
+                <div id="bell-bottom-inside">
+                    <div id="bell-bottom-dinger">
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.5.44/Tone.js"></script>
+    <script>
+
+    document.body.addEventListener("click", async () => {
+    await Tone.start();
+    console.log("Audio context started");
+    }, { once: true });
+  
+    function setVHUnit() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    setVHUnit();
+
+    let bellGain = new Tone.Gain(1).toDestination();
+    let castGain = new Tone.Gain(1).toDestination();
+    let tabGain = new Tone.Gain(1).toDestination();
+    let tamGain = new Tone.Gain(1).toDestination();
+
+    let bell1 = new Tone.Player("media/inst/bell1.mp3").connect(bellGain);
+    let bell2 = new Tone.Player("media/inst/bell2.mp3").connect(bellGain);
+    let bell3 = new Tone.Player("media/inst/bell3.mp3").connect(bellGain);
+    let bell4 = new Tone.Player("media/inst/bell4.mp3").connect(bellGain);
+    let bell5 = new Tone.Player("media/inst/bell5.mp3").connect(bellGain);
+
+    let bellArray = [bell1, bell2, bell3, bell4, bell5];
+    
+    let cast1 = new Tone.Player("media/inst/cast1.mp3").connect(castGain);
+    let cast2 = new Tone.Player("media/inst/cast2.mp3").connect(castGain);
+    let cast3 = new Tone.Player("media/inst/cast3.mp3").connect(castGain);
+    let cast4 = new Tone.Player("media/inst/cast4.mp3").connect(castGain);
+    let cast5 = new Tone.Player("media/inst/cast5.mp3").connect(castGain);
+    let cast6 = new Tone.Player("media/inst/cast6.mp3").connect(castGain);
+    let cast7 = new Tone.Player("media/inst/cast7.mp3").connect(castGain);
+
+    let castArray = [cast1, cast2, cast3, cast4, cast5, cast6, cast7];
+
+    let tam1 = new Tone.Player("media/inst/tam1.mp3").connect(tamGain);
+    let tam2 = new Tone.Player("media/inst/tam2.mp3").connect(tamGain);
+    let tam3 = new Tone.Player("media/inst/tam3.mp3").connect(tamGain);
+    let tam4 = new Tone.Player("media/inst/tam4.mp3").connect(tamGain);
+    let tam5 = new Tone.Player("media/inst/tam5.mp3").connect(tamGain);
+
+    let tamArray = [tam1, tam2, tam3, tam4, tam5];
+
+    let tab1 = new Tone.Player("media/inst/tab1.mp3").connect(tabGain);
+    let tab2 = new Tone.Player("media/inst/tab2.mp3").connect(tabGain);
+    let tab3 = new Tone.Player("media/inst/tab3.mp3").connect(tabGain);
+    let tab4 = new Tone.Player("media/inst/tab4.mp3").connect(tabGain);
+    let tab5 = new Tone.Player("media/inst/tab5.mp3").connect(tabGain);
+
+    let clink = new Tone.Player("media/clink.mp3");
+
+    let castenetBaseColor = "#88d08e";
+    let castenetChangeColor = "#802ef7"
+    let taborBaseColor = "lightblue";
+    let taborChangeColor = "#22c146";
+    let tamborineBaseColor = "#d3b5ff";
+    let tamborineChangeColor =  "#008fff"
+    let bellBaseColor = "lightpink";
+    let bellChangeColor = "#fb00ff";
+
+    function makeBorder() {
+        document.body.style.border = "black solid 60px";
+    }
+    
+    function removeBorder() {
+        document.body.style.border = "none";
+    }
+    
+    let tabArray = [tab1, tab2, tab3, tab4, tab5];
+
+
+    let randomNum = getRandomInt(0,3);
+    
+    let instrument = document.querySelector("#instrument");
+
+    let tamborine = document.getElementById("tamborine");
+    tamborine.addEventListener("click", () => {
+    tamborine.style.transform = "scale(1.3) rotate(-3deg)"
+    // document.body.style.backgroundColor = "#008fff"
+    // makeBorder()
+    setTimeout(() => {
+        tamborine.style.transform = "scale(1) rotate(-15deg)"
+        // document.body.style.backgroundColor = "lightblue"
+        // removeBorder()
+    }, 100)
+    })
+    let tabor = document.getElementById("tabor");
+    tabor.addEventListener("click", () => {
+        tabor.style.left = "-10%";
+        // document.body.style.backgroundColor = taborBaseColor;
+        setTimeout(() => {
+        //  makeBorder()
+        setTimeout(() => {
+        tabor.style.left = "0%"
+        // document.body.style.backgroundColor = taborChangeColor;
+        // removeBorder()
+        }, 50)
+        }, 50);
+      
+    })
+    let castenetBottom = document.getElementById("castenet-bottom");
+    let castenet = document.getElementById("castenet");
+        castenetBottom.addEventListener("click", () => {
+        castenetBottom.style.transform = "rotate(10deg)";
+        castenetBottom.style.left = "12%";
+        // document.body.style.backgroundColor = castenetChangeColor
+        // makeBorder()
+        setTimeout(() => {
+        castenetBottom.style.transform = "rotate(-1deg)";
+        castenetBottom.style.left = "20%";
+        setTimeout(() => {
+        // document.body.style.backgroundColor = castenetBaseColor;
+        // removeBorder()        
+        }, 50)
+        }, 100)
+    })
+    let bell = document.getElementById("bell");
+    let bellDinger = document.getElementById("bell-bottom-dinger")
+    bell.addEventListener("click", () => {
+        bell.style.transform = "rotate(30deg)"
+        bellDinger.style.left = "80%"
+        // document.body.style.backgroundColor = bellChangeColor;
+        // makeBorder()
+        setTimeout(() => {
+            bell.style.transform = "rotate(0deg)"
+            bellDinger.style.left = "42%"
+              setTimeout(() => {
+            bell.style.transform = "rotate(-30deg)"
+             bellDinger.style.left = "10%"
+            setTimeout(() => {
+            bell.style.transform = "rotate(0deg)"
+            bellDinger.style.left = "42%"
+            // document.body.style.backgroundColor = bellBaseColor;
+            // removeBorder()
+        }, 60)
+        }, 60)
+        }, 60)
+    })
+
+    function showTamborine() {
+        tamborine.style.display = "block";
+        tabor.style.display = "none";
+        castenet.style.display = "none"
+        bell.style.display = "none";
+        document.body.style.backgroundColor = tamborineBaseColor;
+    }
+
+    tamborine.addEventListener("click", () => {
+        tamArray[getRandomInt(0, tamArray.length - 1)].start(0);
+    })
+
+    function showTabor() {
+        tamborine.style.display = "none";
+        tabor.style.display = "block";
+        castenet.style.display = "none"
+        bell.style.display = "none";
+        document.body.style.backgroundColor = taborBaseColor;
+
+    }
+    tabor.addEventListener("click", () => {
+        tabArray[getRandomInt(0, tabArray.length - 1)].start(0);
+    })
+    
+    function showCastenet() {
+        tamborine.style.display = "none";
+        tabor.style.display = "none";
+        castenet.style.display = "block"
+        bell.style.display = "none";
+        document.body.style.backgroundColor = castenetBaseColor;
+
+    }
+
+     castenet.addEventListener("click", () => {
+        castArray[getRandomInt(0, castArray.length - 1)].start(0);
+    })
+
+    function showBell() {
+        tamborine.style.display = "none";
+        tabor.style.display = "none";
+        castenet.style.display = "none"
+        bell.style.display = "block";
+        document.body.style.backgroundColor = bellBaseColor;
+    }
+
+       bell.addEventListener("click", () => {
+        bellArray[getRandomInt(0, bellArray.length - 1)].start(0);
+    })
+
+
+    function backToDrinks() {
+        location.href = "bones.html"
+    }
+
+
+
+     if (randomNum == 0) {
+        showTamborine()
+    } else if (randomNum == 1) {
+        showTabor()
+    } else if (randomNum == 2) {
+        showCastenet()
+    } else if (randomNum == 3) {
+        showBell()
+    }
+
+
+
+        function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+document.body.style.cursor = 'none';
+    </script>
+</body>
+</html>
